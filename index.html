@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f5f5f7">
+<meta name="description" content="汽车品牌讲解系统：探索品牌历史、设计理念、代表车型与技术特色。">
+<title>AutoMuse — 汽车品牌探索</title>
+<style>
+:root{--bg:#f5f5f7;--ink:#1d1d1f;--muted:#6e6e73;--blue:#0071e3;--card:#fff;--line:#d2d2d7;--radius:28px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.5}
+a{color:inherit;text-decoration:none}button,input{font:inherit}button{cursor:pointer}
+.nav{height:54px;position:sticky;top:0;z-index:20;background:rgba(250,250,252,.82);backdrop-filter:blur(18px);border-bottom:1px solid rgba(0,0,0,.07)}
+.nav-inner{max-width:1120px;height:100%;padding:0 24px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-size:18px;font-weight:750;letter-spacing:-.7px;white-space:nowrap}.logo span{color:var(--blue)}.nav-links{display:flex;gap:24px;font-size:12px;color:#424245}.nav-links a:hover{color:var(--blue)}.nav-cta{font-size:12px;color:#fff;background:var(--blue);border:0;border-radius:99px;padding:7px 14px}
+.hero{max-width:1440px;margin:auto;padding:74px 24px 22px;text-align:center}
+.eyebrow{font-size:13px;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);font-weight:650}
+h1{font-size:clamp(44px,7vw,82px);letter-spacing:-.065em;line-height:1.02;margin:18px auto 18px;font-weight:750;max-width:900px}
+.hero p{font-size:clamp(17px,2vw,21px);color:var(--muted);max-width:660px;margin:0 auto 26px}
+.hero-actions{display:flex;justify-content:center;gap:20px;align-items:center;margin-bottom:42px}.pill{border:0;border-radius:99px;background:var(--blue);color:#fff;padding:11px 20px;font-weight:550}.text-link{color:var(--blue);font-size:15px}.text-link:hover{text-decoration:underline}
+.hero-image{height:min(51vw,510px);min-height:260px;border-radius:30px;overflow:hidden;position:relative;background:#1c252d}
+.hero-image img{width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:brightness(.77)}
+.hero-copy{position:absolute;inset:auto 24px 30px;color:white;text-align:left}.hero-copy h2{font-size:clamp(25px,4vw,45px);letter-spacing:-.04em;margin:0}.hero-copy p{color:rgba(255,255,255,.85);margin:7px 0 0;font-size:15px}
+.section{max-width:1120px;padding:72px 24px;margin:auto}.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}.section h2{font-size:clamp(30px,4vw,46px);letter-spacing:-.055em;line-height:1.1;margin:0}.sub{color:var(--muted);margin:10px 0 0}
+.searchbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e5e5e7;border-radius:14px;padding:0 15px;min-width:min(320px,100%);height:46px}.searchbar input{border:0;outline:0;width:100%;background:transparent;color:var(--ink)}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 26px}.filter{border:1px solid #d2d2d7;border-radius:99px;background:transparent;padding:8px 15px;color:#424245;font-size:13px}.filter.active,.filter:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.brand-card{background:var(--card);border-radius:22px;overflow:hidden;transition:transform .22s,box-shadow .22s;cursor:pointer;border:1px solid rgba(0,0,0,.035)}.brand-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}.brand-img{height:190px;overflow:hidden;background:#ddd}.brand-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.brand-card:hover .brand-img img{transform:scale(1.04)}.brand-body{padding:20px}.brand-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand-name{font-size:23px;font-weight:700;letter-spacing:-.04em}.country{font-size:11px;background:#f5f5f7;border-radius:99px;padding:5px 9px;color:#666}.brand-desc{font-size:14px;color:var(--muted);margin:10px 0 18px;min-height:42px}.card-foot{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;padding-top:14px;font-size:13px}.arrow{color:var(--blue);font-size:20px}
+.feature{background:#101114;color:#fff;border-radius:30px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;min-height:360px}.feature-copy{padding:clamp(28px,5vw,58px);display:flex;flex-direction:column;justify-content:center}.feature-copy .eyebrow{color:#80baff}.feature-copy h2{font-size:clamp(30px,4vw,48px);margin:14px 0;letter-spacing:-.05em}.feature-copy p{color:#b9b9bf;max-width:430px}.feature-image{min-height:300px}.feature-image img{width:100%;height:100%;object-fit:cover}
+.compare{background:#fff;border-radius:24px;padding:28px}.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:18px}.compare label{font-size:13px;color:var(--muted);display:block;margin-bottom:7px}.compare select{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}.compare-result{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.compare-item{background:#f5f5f7;border-radius:16px;padding:18px}.compare-item h3{margin:0 0 6px}.compare-item p{color:var(--muted);font-size:14px;margin:0}
+.footer{border-top:1px solid #ddd;padding:26px 24px 36px;color:var(--muted);font-size:12px}.footer-inner{max-width:1120px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.48);display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-panel{background:#fff;border-radius:26px;max-width:720px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 25px 80px #0003}.modal-img{height:270px;position:relative}.modal-img img{width:100%;height:100%;object-fit:cover}.close{position:absolute;right:15px;top:15px;width:38px;height:38px;border:0;border-radius:50%;background:rgba(255,255,255,.92);font-size:23px}.modal-content{padding:28px}.modal-content h2{font-size:36px;letter-spacing:-.05em;margin:0}.modal-content .lead{color:var(--muted);font-size:16px}.detail-columns{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}.detail-box{background:#f5f5f7;border-radius:16px;padding:17px}.detail-box h3{font-size:14px;margin:0 0 7px}.detail-box p{font-size:13px;color:var(--muted);margin:0}
+.empty{grid-column:1/-1;padding:45px;text-align:center;color:var(--muted);background:white;border-radius:20px}
+
+.models-tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}.model-search{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e5e5e7;border-radius:14px;padding:0 15px;height:46px;min-width:min(330px,100%)}.model-search input{border:0;outline:0;width:100%;background:transparent}.model-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.model-card{background:#fff;border-radius:22px;overflow:hidden;border:1px solid rgba(0,0,0,.035);cursor:pointer;transition:transform .2s,box-shadow .2s}.model-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.08)}.model-photo{height:175px;background:#ddd;overflow:hidden;position:relative}.model-photo img{width:100%;height:100%;object-fit:cover}.model-photo span{position:absolute;top:12px;left:12px;background:#ffffffeb;border-radius:99px;padding:5px 9px;font-size:11px}.model-body{padding:18px}.model-body h3{margin:0;font-size:21px;letter-spacing:-.04em}.model-brand{font-size:12px;color:var(--muted)}.model-body p{font-size:13px;color:var(--muted);min-height:40px}.model-specs{display:flex;gap:7px;flex-wrap:wrap}.model-specs span{background:#f5f5f7;padding:5px 8px;border-radius:8px;font-size:11px}.model-count{color:var(--muted);font-size:13px;margin-left:auto}.model-modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.model-modal-grid div{background:#f5f5f7;padding:16px;border-radius:14px}.model-modal-grid strong{display:block;font-size:13px;margin-bottom:5px}.model-modal-grid span{font-size:13px;color:var(--muted)}
+
+@media(max-width:760px){.nav-links{display:none}.hero{padding-top:50px}.section{padding-top:54px;padding-bottom:54px}.section-head{align-items:stretch;flex-direction:column}.searchbar{min-width:0}.grid,.model-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.brand-img{height:145px}.brand-body{padding:15px}.brand-name{font-size:19px}.brand-desc{font-size:13px;min-height:60px}.feature{grid-template-columns:1fr}.feature-image{order:-1;min-height:220px;height:240px}.compare-grid,.compare-result,.detail-columns{grid-template-columns:1fr}.hero-image{border-radius:22px}.hero-copy{bottom:20px}.hero-actions{margin-bottom:30px}}
+@media(max-width:440px){.grid,.model-grid{grid-template-columns:1fr}.brand-img{height:190px}.brand-desc{min-height:0}.hero-image{min-height:280px}.hero-image img{object-position:58% center}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="nav-inner">
+<a class="logo" href="#">Auto<span>Muse</span></a>
+<nav class="nav-links"><a href="#brands">品牌图鉴</a><a href="#models">车型探索</a><a href="#stories">设计与科技</a><a href="#compare">品牌对比</a></nav>
+<a class="nav-cta" href="#brands">开始探索</a>
+</div></header>
+<main>
+<section class="hero">
+<div class="eyebrow">THE WORLD OF AUTOMOTIVE</div>
+<h1>不止于车。<br>探索每个品牌的灵魂。</h1>
+<p>从传奇历史到未来科技，用一种更直观、更优雅的方式，认识你喜爱的汽车品牌。</p>
+<div class="hero-actions"><a class="pill" href="#brands">探索品牌</a><a class="text-link" href="#models">浏览车型 ↗</a></div>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85" alt="汽车的流线型车身">
+<div class="hero-copy"><h2>每一段旅程，都有自己的风格。</h2><p>品牌 · 工艺 · 性能 · 创新</p></div>
+</div>
+</section>
+
+<section class="section" id="brands">
+<div class="section-head"><div><div class="eyebrow">BRAND DIRECTORY</div><h2>找到你的下一份热爱。</h2><p class="sub">从经典豪华到先锋电动，打开品牌故事。</p></div>
+<label class="searchbar" aria-label="搜索品牌"><span>⌕</span><input id="search" type="search" placeholder="搜索品牌、国家或关键词…"></label></div>
+<div class="filters" id="filters">
+<button class="filter active" data-filter="全部">全部品牌</button><button class="filter" data-filter="豪华">豪华</button><button class="filter" data-filter="性能">性能</button><button class="filter" data-filter="电动">电动</button><button class="filter" data-filter="经典">经典</button><button class="filter" data-filter="大众">大众与家用</button><button class="filter" data-filter="越野">越野与 SUV</button>
+</div>
+<div class="grid" id="brandGrid"></div>
+</section>
+
+
+<section class="section" id="models">
+<div class="section-head"><div><div class="eyebrow">MODEL EXPLORER</div><h2>不只认识品牌，也认识每一款车。</h2><p class="sub">从轿车、SUV 到跑车与电动汽车，搜索你感兴趣的车型。</p></div>
+<label class="model-search"><span>⌕</span><input id="modelSearch" type="search" placeholder="搜索车型、品牌或动力类型…"></label></div>
+<div class="filters" id="modelFilters"><button class="filter active" data-type="全部">全部车型</button><button class="filter" data-type="轿车">轿车</button><button class="filter" data-type="SUV">SUV</button><button class="filter" data-type="跑车">跑车</button><button class="filter" data-type="电动">纯电/电动</button><button class="filter" data-type="越野">越野</button><button class="filter" data-type="性能">高性能</button></div>
+<div class="toolbar"><span class="model-count" id="modelCount"></span><select class="sort-select" id="modelSort"><option value="default">默认排序</option><option value="brand">按品牌排序</option><option value="name">按车型名称排序</option></select></div>
+<div class="model-grid" id="modelGrid"></div>
+</section>
+
+<section class="section" id="stories">
+<div class="feature">
+<div class="feature-copy"><div class="eyebrow">DESIGN × TECHNOLOGY</div><h2>好的设计，<br>让每一次出发都值得期待。</h2><p>空气动力学、座舱交互、动力系统与材料工艺——汽车不只是交通工具，也是工程与美学的交汇点。</p><a class="text-link" href="#compare">看看品牌之间的不同 ↗</a></div>
+<div class="feature-image"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=85" alt="跑车设计细节"></div>
+</div>
+</section>
+
+<section class="section" id="compare">
+<div class="section-head"><div><div class="eyebrow">SIDE BY SIDE</div><h2>不同理念，同样迷人。</h2><p class="sub">选择两个品牌，快速了解它们的特色。</p></div></div>
+<div class="compare"><div class="compare-grid">
+<div><label for="brandA">品牌 A</label><select id="brandA"></select></div>
+<div><label for="brandB">品牌 B</label><select id="brandB"></select></div>
+</div><div class="compare-result" id="compareResult"></div></div>
+</section>
+</main>
+<footer class="footer"><div class="footer-inner"><span>© 2026 AutoMuse · 汽车品牌探索指南</span><span>独立知识展示项目 · 品牌名称仅用于介绍与识别</span></div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="品牌介绍"><div class="modal-panel">
+<div class="modal-img"><img id="modalImage" alt=""><button class="close" id="closeModal" aria-label="关闭">×</button></div>
+<div class="modal-content" id="modalContent"></div>
+</div></div>
+<script>
+const brands=[
+{id:"bmw",name:"BMW",cn:"宝马",country:"德国",tags:["豪华","性能"],year:"1916",slogan:"纯粹驾驶乐趣",desc:"以驾驶者为中心的操控体验，将运动基因融入日常出行。",history:"从航空发动机制造起步，逐步发展为以运动豪华著称的汽车品牌。",design:"标志性的双肾格栅、驾驶者导向座舱，以及强调车身动态平衡的比例。",tech:"直列六缸发动机、后驱平台与电动化平台并行发展。",model:"3 系、5 系、M3、i4",img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=900&q=80"},
+{id:"benz",name:"Mercedes-Benz",cn:"梅赛德斯-奔驰",country:"德国",tags:["豪华","经典"],year:"1926",slogan:"汽车发明者之一",desc:"以舒适、豪华与安全科技见长，强调从细节到整体的高级感。",history:"品牌根源与汽车早期发明史紧密相连，长期推动汽车工程的发展。",design:"优雅车身比例、精致内饰与强调氛围感的座舱设计。",tech:"驾驶辅助、舒适底盘、豪华座舱交互与纯电车型技术。",model:"C 级、E 级、S 级、EQS",img:"https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=900&q=80"},
+{id:"porsche",name:"Porsche",cn:"保时捷",country:"德国",tags:["性能","豪华"],year:"1931",slogan:"性能与日常的平衡",desc:"把赛道工程融入公路驾驶，以精准操控和鲜明轮廓闻名。",history:"以工程设计工作室起家，随后凭借跑车和赛车成就建立品牌声誉。",design:"低矮车身、流畅车顶线条、圆形灯组与功能优先的运动美学。",tech:"水平对置发动机、赛道调校、混合动力与高性能电动技术。",model:"911、718、Taycan、Macan",img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80"},
+{id:"tesla",name:"Tesla",cn:"特斯拉",country:"美国",tags:["电动","性能"],year:"2003",slogan:"加速电动化转型",desc:"以纯电动力、软件体验与简洁座舱设计推动汽车使用方式变化。",history:"围绕纯电汽车展开产品布局，并将软件更新与充电网络纳入体验。",design:"极简内饰、简洁外观与以屏幕和软件为核心的交互方式。",tech:"纯电平台、OTA 软件更新、能量管理与驾驶辅助系统。",model:"Model 3、Model Y、Model S、Cybertruck",img:"https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=900&q=80"},
+{id:"ferrari",name:"Ferrari",cn:"法拉利",country:"意大利",tags:["性能","经典","豪华"],year:"1947",slogan:"源自赛道的激情",desc:"将赛车传统、强烈造型与高性能动力融为鲜明的意式表达。",history:"品牌与赛车运动联系深厚，赛道经验持续影响公路车型开发。",design:"富有张力的车身曲面、鲜明比例与强调情绪的驾驶舱。",tech:"高转速发动机、空气动力学、轻量化材料与混合动力系统。",model:"296 GTB、SF90、Purosangue",img:"https://images.unsplash.com/photo-1592198084033-a1a1e1e0e6a1?auto=format&fit=crop&w=900&q=80"},
+{id:"audi",name:"Audi",cn:"奥迪",country:"德国",tags:["豪华","性能"],year:"1909",slogan:"突破科技，启迪未来",desc:"以科技感设计、数字化座舱和多种动力技术形成品牌辨识度。",history:"由多个汽车工业传统汇聚而来，四环标志象征品牌历史中的联盟。",design:"简洁几何线条、灯光设计与数字化座舱语言。",tech:"quattro 四驱技术、矩阵式灯光与电动化平台。",model:"A6、A8、RS 6、Q8 e-tron",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"},
+{id:"toyota",name:"Toyota",cn:"丰田",country:"日本",tags:["经典"],year:"1937",slogan:"可靠与持续改进",desc:"以可靠性、制造体系和多元化动力路线服务广泛用户。",history:"从纺织机械制造背景发展为全球重要汽车制造商之一。",design:"重视功能、耐用性与用户场景，不同产品线有鲜明的造型区分。",tech:"混合动力、精益制造、氢燃料电池探索与可靠性工程。",model:"Corolla、Camry、Land Cruiser、Prius",img:"https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=900&q=80"},
+{id:"volvo",name:"Volvo",cn:"沃尔沃",country:"瑞典",tags:["豪华","经典"],year:"1927",slogan:"以人为本的安全理念",desc:"强调安全、克制设计与舒适体验，呈现北欧式的简约气质。",history:"创立于瑞典，安全技术与以人为本的产品理念是品牌核心叙事。",design:"简洁北欧风格、自然材质与明晰的座舱布局。",tech:"主动安全、结构防护、驾驶辅助与电动化技术。",model:"XC60、XC90、EX30、EX90",img:"https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=900&q=80"},
+{id:"lamborghini",name:"Lamborghini",cn:"兰博基尼",country:"意大利",tags:["性能","豪华"],year:"1963",slogan:"大胆、极致、戏剧性",desc:"以锐利的楔形车身、强烈视觉冲击和超级跑车性能著称。",history:"品牌以挑战传统豪华跑车的姿态进入市场，并形成独特超级跑车风格。",design:"棱角分明的几何造型、低趴姿态与极具辨识度的灯组。",tech:"高性能发动机、碳纤维结构、空气动力学与混合动力系统。",model:"Revuelto、Huracán、Urus",img:"https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=900&q=80"}
+,{id:"lexus",name:"Lexus",cn:"雷克萨斯",country:"日本",tags:["豪华"],year:"1989",slogan:"精工与宁静的豪华",desc:"以细腻工艺、舒适静谧与混合动力技术形成独特豪华体验。",history:"作为丰田旗下豪华品牌推出，重视品质控制、服务体验与舒适性。",design:"纺锤形设计语言、细腻材质与兼顾驾驶和乘坐的座舱。",tech:"混合动力系统、精细底盘调校与多层次驾驶辅助。",model:"ES、LS、IS、RX、NX、GX、LX、RZ",img:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"}
+,{id:"honda",name:"Honda",cn:"本田",country:"日本",tags:["大众","性能"],year:"1948",slogan:"工程热情与实用主义",desc:"以高效动力、实用空间和驾驶乐趣兼顾的产品思路受到欢迎。",history:"从发动机与摩托车业务成长为全球汽车制造商，持续投入动力工程。",design:"实用导向、清晰视野与兼顾空间效率的布局。",tech:"VTEC 技术、混合动力、发动机工程与运动化底盘调校。",model:"Civic、Accord、CR-V、HR-V、Pilot、Type R",img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"}
+,{id:"hyundai",name:"Hyundai",cn:"现代",country:"韩国",tags:["大众","电动"],year:"1967",slogan:"设计驱动的多元出行",desc:"产品覆盖家用车、SUV 与纯电车型，设计和电动化布局发展迅速。",history:"从韩国汽车制造商发展为全球化品牌，持续拓展电动与智能出行产品。",design:"大胆的灯光图形、参数化造型与未来感座舱设计。",tech:"纯电平台、快充技术与混合动力系统。",model:"Elantra、Sonata、Tucson、Santa Fe、IONIQ 5、IONIQ 6",img:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"}
+,{id:"kia",name:"Kia",cn:"起亚",country:"韩国",tags:["大众","电动"],year:"1944",slogan:"大胆设计与电动转型",desc:"以鲜明设计、丰富配置与逐步扩大的电动车阵容参与全球市场竞争。",history:"品牌产品从经济型车型拓展到跨界 SUV、纯电汽车和运动化产品。",design:"强调视觉辨识度的前脸、简洁车身线条与科技感座舱。",tech:"纯电平台、能量回收、驾驶辅助与混合动力技术。",model:"K3、K5、Sportage、Sorento、EV3、EV6、EV9",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80"}
+,{id:"byd",name:"BYD",cn:"比亚迪",country:"中国",tags:["电动","大众"],year:"1995",slogan:"电动化与电池技术",desc:"以电池技术为基础，布局纯电与插电式混合动力乘用车。",history:"从电池制造业务发展为涵盖新能源汽车、电池与相关技术的企业。",design:"王朝、海洋等产品系列采用不同设计主题，强调电动时代的识别度。",tech:"刀片电池、DM 插电混动技术、纯电平台与电驱系统。",model:"海鸥、海豚、海豹、秦 PLUS、汉、唐、宋 PLUS、元 PLUS",img:"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=80"}
+,{id:"nio",name:"NIO",cn:"蔚来",country:"中国",tags:["电动","豪华"],year:"2014",slogan:"高端智能电动体验",desc:"聚焦高端智能电动汽车、数字化服务与换电生态。",history:"以智能电动汽车为核心业务，尝试将补能网络和用户服务整合到体验中。",design:"简洁克制的车身造型、数字化座舱与强调舒适感的内饰。",tech:"纯电平台、换电体系、智能座舱与驾驶辅助系统。",model:"ET5、ET5T、ET7、ES6、ES8、EC6、EC7",img:"https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=80"}
+,{id:"vw",name:"Volkswagen",cn:"大众",country:"德国",tags:["大众","经典"],year:"1937",slogan:"为日常出行而设计",desc:"产品覆盖紧凑型轿车、家庭 SUV 与电动车，注重实用与均衡。",history:"从大众化汽车理念发展为拥有多层级产品阵容的全球汽车集团品牌。",design:"清晰、实用的设计语言，强调空间效率与易用性。",tech:"涡轮增压发动机、双离合变速箱、平台化开发与 ID. 电动车系。",model:"Golf、Polo、Passat、Tiguan、Touareg、ID.3、ID.4",img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=900&q=80"}
+,{id:"ford",name:"Ford",cn:"福特",country:"美国",tags:["大众","越野","性能"],year:"1903",slogan:"实用工程与自由探索",desc:"从家用车到皮卡和越野车型，强调耐用、能力与多场景适应性。",history:"流水线制造历史影响深远，产品线覆盖轿车、SUV、皮卡与性能车型。",design:"功能导向、强壮比例与强调用途的车型差异化设计。",tech:"EcoBoost 动力、四驱系统、越野管理与电动化探索。",model:"Mustang、Bronco、Explorer、F-150、Ranger、Mustang Mach-E",img:"https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=900&q=80"}
+,{id:"jeep",name:"Jeep",cn:"Jeep",country:"美国",tags:["越野","经典"],year:"1941",slogan:"为探索而生",desc:"以越野能力和户外形象著称，强调通过性与多场景驾驶。",history:"品牌形象与军用越野车历史相关，后来拓展到城市 SUV 和户外生活方式。",design:"直立车身、七孔格栅、短前后悬与强调功能的细节。",tech:"四驱系统、低速越野能力、地形模式与车身防护设计。",model:"Wrangler、Grand Cherokee、Compass、Gladiator",img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80"}
+,{id:"landrover",name:"Land Rover",cn:"路虎",country:"英国",tags:["越野","豪华"],year:"1948",slogan:"奢华与全地形能力",desc:"将越野通过性与高级舒适体验结合，覆盖豪华 SUV 与硬派越野。",history:"源自英国全地形车辆传统，逐步形成兼顾探险能力和豪华体验的产品体系。",design:"挺拔轮廓、简洁车身体块与具有功能感的设计细节。",tech:"全地形反馈系统、空气悬架、四驱技术与越野辅助。",model:"Defender、Discovery、Range Rover、Range Rover Sport、Evoque",img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80"}
+,{id:"mazda",name:"Mazda",cn:"马自达",country:"日本",tags:["大众","性能"],year:"1920",slogan:"人马一体的驾驶感",desc:"注重驾驶参与感、轻量化思路与富有雕塑感的车身设计。",history:"以独特的工程选择和设计语言建立品牌个性，并持续探索高效燃烧技术。",design:"魂动设计、流动曲面与简洁内饰，重视比例与光影。",tech:"转子发动机历史、创驰蓝天技术与底盘调校。",model:"Mazda3、CX-30、CX-5、CX-50、MX-5",img:"https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"}
+,{id:"subaru",name:"Subaru",cn:"斯巴鲁",country:"日本",tags:["越野","性能"],year:"1953",slogan:"全时四驱与水平对置",desc:"以水平对置发动机、对称式四驱和户外实用形象形成特色。",history:"品牌长期坚持独特动力布局，并在拉力赛事中积累了鲜明的运动形象。",design:"功能导向的 SUV 与旅行车设计，强调视野和户外使用场景。",tech:"水平对置发动机、对称式全时四驱与驾驶辅助系统。",model:"Impreza、WRX、Crosstrek、Forester、Outback、BRZ",img:"https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=900&q=80"}
+,{id:"aston",name:"Aston Martin",cn:"阿斯顿·马丁",country:"英国",tags:["豪华","性能","经典"],year:"1913",slogan:"英伦优雅与 GT 传统",desc:"以优雅的 GT 车身、手工质感和高性能豪华体验著称。",history:"英国豪华跑车品牌，长期将长途巡航舒适性与运动性能结合。",design:"修长车头、优雅车身比例与精致内饰。",tech:"高性能涡轮增压动力、轻量化结构与底盘调校。",model:"Vantage、DB12、DBX、Vanquish",img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80"}
+,{id:"mclaren",name:"McLaren",cn:"迈凯伦",country:"英国",tags:["性能","豪华"],year:"1963",slogan:"以赛车工程塑造公路车",desc:"将赛车空气动力学、轻量化和快速响应带入公路超级跑车。",history:"源自赛车运动传统，品牌工程理念长期围绕重量、效率和动态表现展开。",design:"低矮车身、空气导流通道与强调功能性的曲面。",tech:"碳纤维单体壳、主动空气动力学与高性能混合动力。",model:"Artura、750S、GTS",img:"https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=900&q=80"}
+
+];
+let activeFilter="全部";
+const grid=document.getElementById("brandGrid");
+function renderBrands(){const q=document.getElementById("search").value.trim().toLowerCase();const list=brands.filter(b=>(activeFilter==="全部"||b.tags.includes(activeFilter))&&[b.name,b.cn,b.country,b.desc,b.tags.join(" ")].join(" ").toLowerCase().includes(q));grid.innerHTML=list.length?list.map(b=>`<article class="brand-card" tabindex="0" role="button" aria-label="查看${b.cn}介绍" data-id="${b.id}"><div class="brand-img"><img loading="lazy" src="${b.img}" alt="${b.cn}代表车型" onerror="this.style.display='none'"></div><div class="brand-body"><div class="brand-top"><span class="brand-name">${b.cn}</span><span class="country">${b.country}</span></div><p class="brand-desc">${b.desc}</p><div class="card-foot"><span>了解品牌故事</span><span class="arrow">↗</span></div></div></article>`).join(""):`<div class="empty">没有找到匹配的品牌，试试其他关键词。</div>`;}
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("button[data-filter]");if(!b)return;activeFilter=b.dataset.filter;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderBrands()});
+document.getElementById("search").addEventListener("input",renderBrands);
+function openBrand(id){const b=brands.find(x=>x.id===id);if(!b)return;document.getElementById("modalImage").src=b.img;document.getElementById("modalImage").alt=b.cn;document.getElementById("modalContent").innerHTML=`<div class="eyebrow">${b.country} · 创立于 ${b.year}</div><h2>${b.cn} <span style="font-size:20px;color:#777;font-weight:500">${b.name}</span></h2><p class="lead">${b.slogan}。${b.desc}</p><div class="detail-columns"><div class="detail-box"><h3>品牌故事</h3><p>${b.history}</p></div><div class="detail-box"><h3>设计语言</h3><p>${b.design}</p></div><div class="detail-box"><h3>技术特色</h3><p>${b.tech}</p></div><div class="detail-box"><h3>代表车型</h3><p>${b.model}</p></div></div>`;document.getElementById("modal").classList.add("open");document.body.style.overflow="hidden"}
+grid.addEventListener("click",e=>{const c=e.target.closest("[data-id]");if(c)openBrand(c.dataset.id)});grid.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-id]")){e.preventDefault();openBrand(e.target.dataset.id)}});
+function closeModal(){document.getElementById("modal").classList.remove("open");document.body.style.overflow=""}
+document.getElementById("closeModal").addEventListener("click",closeModal);document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+const selA=document.getElementById("brandA"),selB=document.getElementById("brandB");brands.forEach((b,i)=>{const a=new Option(b.cn,b.id),c=new Option(b.cn,b.id);selA.add(a);selB.add(c)});selB.value="tesla";
+function renderCompare(){const a=brands.find(b=>b.id===selA.value),b=brands.find(b=>b.id===selB.value);document.getElementById("compareResult").innerHTML=[a,b].map(x=>`<div class="compare-item"><h3>${x.cn}</h3><p><b>国家：</b>${x.country}</p><p><b>品牌关键词：</b>${x.tags.join(" · ")}</p><p><b>理念：</b>${x.slogan}</p><p><b>代表车型：</b>${x.model}</p></div>`).join("")}
+selA.addEventListener("change",renderCompare);selB.addEventListener("change",renderCompare);
+const modelData = [
+["宝马","BMW","3 系","轿车","燃油 / 混动","运动型豪华轿车，兼顾操控与日常实用。","https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"],
+["宝马","BMW","5 系","轿车","燃油 / 插混 / i5 纯电","中大型轿车，兼顾商务、家庭与科技体验。","https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"],
+["宝马","BMW","X3","SUV","燃油 / 插混（因市场而异）","中型豪华 SUV，适合日常通勤和家庭出行。","https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"],
+["宝马","BMW","X5","SUV","燃油 / 插混（因市场而异）","中大型豪华 SUV，兼顾空间与公路舒适。","https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"],
+["宝马","BMW","M3","性能","高性能燃油","以赛道取向底盘和强劲动力见长。","https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"],
+["宝马","BMW","i4","电动","纯电","以运动轿跑形式呈现纯电驾驶体验。","https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80"],
+["奔驰","Mercedes-Benz","C 级","轿车","燃油 / 插混（因市场而异）","紧凑豪华轿车，强调座舱氛围和舒适性。","https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80"],
+["奔驰","Mercedes-Benz","E 级","轿车","燃油 / 插混（因市场而异）","商务与家庭场景兼顾的中大型豪华轿车。","https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80"],
+["奔驰","Mercedes-Benz","S 级","轿车","燃油 / 插混（因市场而异）","旗舰豪华轿车，突出乘坐舒适和高阶配置。","https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80"],
+["奔驰","Mercedes-Benz","G 级","越野","燃油","经典硬派越野造型，强调通过能力和辨识度。","https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80"],
+["保时捷","Porsche","911","跑车","燃油 / 混动（依版本）","经典跑车，融合日常可用性与赛道能力。","https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"],
+["保时捷","Porsche","Taycan","电动","纯电","以运动底盘与快速响应为核心的纯电车系。","https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80"],
+["保时捷","Porsche","Cayenne","SUV","燃油 / 插混（依市场）","将 SUV 空间与运动化底盘调校结合。","https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80"],
+["特斯拉","Tesla","Model 3","轿车","纯电","中型纯电轿车，强调效率、软件与简洁座舱。","https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80"],
+["特斯拉","Tesla","Model Y","SUV","纯电","纯电跨界 SUV，强调空间利用率和能耗表现。","https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80"],
+["特斯拉","Tesla","Model S","轿车","纯电","高性能纯电旗舰轿车，强调加速和长途能力。","https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80"],
+["法拉利","Ferrari","296 GTB","跑车","插电混动","中置混合动力跑车，突出轻量化与响应速度。","https://images.unsplash.com/photo-1592198084033-a1a1e1e0e6a1?auto=format&fit=crop&w=800&q=80"],
+["法拉利","Ferrari","Purosangue","SUV","燃油","高性能四门四座车型，兼顾空间与跑车化表现。","https://images.unsplash.com/photo-1592198084033-a1a1e1e0e6a1?auto=format&fit=crop&w=800&q=80"],
+["奥迪","Audi","A6","轿车","燃油 / 插混（因市场而异）","中大型豪华轿车，注重科技配置和长途舒适。","https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80"],
+["奥迪","Audi","Q5","SUV","燃油 / 插混（因市场而异）","中型豪华 SUV，适合家庭和日常通勤。","https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80"],
+["丰田","Toyota","卡罗拉 Corolla","轿车","燃油 / 混动","家用车代表，重视经济性、可靠性和易用性。","https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80"],
+["丰田","Toyota","凯美瑞 Camry","轿车","燃油 / 混动（因市场而异）","中型家用轿车，强调舒适与燃油经济性。","https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80"],
+["丰田","Toyota","RAV4","SUV","燃油 / 混动 / 插混（因市场而异）","实用型 SUV，适合家庭出行和多用途场景。","https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80"],
+["丰田","Toyota","兰德酷路泽 Land Cruiser","越野","燃油 / 混动（因市场而异）","以耐久性和复杂路况能力著称的越野 SUV。","https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80"],
+["本田","Honda","思域 Civic","轿车","燃油 / 混动（因市场而异）","紧凑型轿车，兼顾经济性、空间和驾驶感。","https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"],
+["本田","Honda","Civic Type R","性能","高性能燃油","以赛道取向底盘和高响应动力为特色。","https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"],
+["本田","Honda","CR-V","SUV","燃油 / 混动（因市场而异）","家庭向紧凑 SUV，注重空间和实用性。","https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"],
+["现代","Hyundai","IONIQ 5","电动","纯电","未来感设计与纯电平台结合的跨界车型。","https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"],
+["现代","Hyundai","Tucson","SUV","燃油 / 混动（依市场）","注重造型和空间的紧凑型 SUV。","https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80"],
+["起亚","Kia","EV6","电动","纯电","强调充电性能、运动设计和跨界实用性。","https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80"],
+["比亚迪","BYD","海豹","电动","纯电 / 插混（版本不同）","强调电动平台、低风阻设计和智能化体验。","https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"],
+["比亚迪","BYD","秦 PLUS","轿车","插电混动 / 纯电（版本不同）","以家用场景为主，重视能耗、空间和使用成本。","https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"],
+["比亚迪","BYD","唐","SUV","插电混动 / 纯电（版本不同）","家庭多用途 SUV，提供不同电动化动力路线。","https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"],
+["大众","Volkswagen","Golf 高尔夫","轿车","燃油 / 轻混 / 插混（依市场）","经典紧凑型掀背车，强调均衡操控和空间效率。","https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80"],
+["大众","Volkswagen","Tiguan 途观","SUV","燃油 / 插混（依市场）","家庭向 SUV，兼顾乘坐空间和日常使用。","https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80"],
+["福特","Ford","Mustang","跑车","燃油","美式运动轿跑代表，强调动力和后驱驾驶感。","https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=800&q=80"],
+["福特","Ford","F-150","越野","燃油 / 混动（版本因市场而异）","全尺寸皮卡，兼顾载货、拖曳和多用途需求。","https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=800&q=80"],
+["Jeep","Jeep","牧马人 Wrangler","越野","燃油 / 插混（因市场而异）","强调越野通过性、开放式车身体验和户外改装生态。","https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80"],
+["路虎","Land Rover","Defender 卫士","越野","燃油 / 轻混 / 插混（因市场而异）","兼顾现代舒适与全地形能力的硬派风格 SUV。","https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80"],
+["马自达","Mazda","MX-5","跑车","燃油","轻量化双座敞篷跑车，以灵活与驾驶乐趣为核心。","https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80"],
+["斯巴鲁","Subaru","WRX","性能","燃油","以四驱和拉力运动传统为特色的运动轿车。","https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=800&q=80"],
+["沃尔沃","Volvo","XC60","SUV","燃油 / 插混（因市场而异）","注重安全、舒适与北欧设计的中型豪华 SUV。","https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=800&q=80"],
+["雷克萨斯","Lexus","RX","SUV","混动 / 插混 / 燃油（因市场而异）","以舒适、静谧和精致做工为重点的豪华 SUV。","https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80"],
+["兰博基尼","Lamborghini","Revuelto","跑车","插电混动","旗舰超级跑车，将高性能 V12 与电动化技术结合。","https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=800&q=80"],
+["劳斯莱斯","Rolls-Royce","Phantom 幻影","轿车","燃油","以静谧、手工细节和定制服务为核心的超豪华旗舰。","https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80"],
+["蔚来","NIO","ET5","电动","纯电","中型智能电动轿车，强调设计、数字化体验和补能服务。","https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=800&q=80"]
+].map((x,i)=>({id:"model"+i,brandCn:x[0],brand:x[1],name:x[2],type:x[3],power:x[4],desc:x[5],img:x[6]}));
+let currentModelType="全部";
+function renderModelCards(){const q=document.getElementById("modelSearch").value.trim().toLowerCase();let list=modelData.filter(m=>(currentModelType==="全部"||(currentModelType==="电动"?/纯电|电动|插混/.test(m.power):currentModelType==="性能"?m.type==="性能"||m.type==="跑车":m.type===currentModelType))&&[m.brandCn,m.brand,m.name,m.type,m.power,m.desc].join(" ").toLowerCase().includes(q));const sort=document.getElementById("modelSort").value;if(sort==="brand")list.sort((a,b)=>a.brandCn.localeCompare(b.brandCn,"zh"));if(sort==="name")list.sort((a,b)=>a.name.localeCompare(b.name,"zh"));document.getElementById("modelCount").textContent=`当前显示 ${list.length} 款车型`;document.getElementById("modelGrid").innerHTML=list.length?list.map(m=>`<article class="model-card" tabindex="0" role="button" data-model-id="${m.id}"><div class="model-photo"><img loading="lazy" src="${m.img}" alt="${m.name}" onerror="this.style.opacity=0"><span>${m.type}</span></div><div class="model-body"><h3>${m.name}</h3><div class="model-brand">${m.brandCn} · ${m.brand}</div><p>${m.desc}</p><div class="model-specs"><span>${m.power}</span><span>${m.type}</span></div></div></article>`).join(""):`<div class="empty">没有找到匹配车型，试试其他关键词。</div>`}
+function openModel(id){const m=modelData.find(x=>x.id===id);if(!m)return;document.getElementById("modalImage").src=m.img;document.getElementById("modalImage").alt=m.name;document.getElementById("modalContent").innerHTML=`<div class="eyebrow">${m.brandCn} · ${m.type}</div><h2>${m.name}</h2><p class="lead">${m.desc}</p><div class="model-modal-grid"><div><strong>所属品牌</strong><span>${m.brandCn}（${m.brand}）</span></div><div><strong>车型类别</strong><span>${m.type}</span></div><div><strong>动力形式</strong><span>${m.power}</span></div><div><strong>产品定位</strong><span>${m.type==="越野"?"强调多地形能力":m.type==="跑车"||m.type==="性能"?"强调驾驶体验与性能":m.type==="电动"?"强调电动化与能效":"兼顾日常出行与实用性"}</span></div></div><p style="font-size:12px;color:#6e6e73;margin-top:20px">车型信息为概览，具体动力、配置和在售情况因地区、年款与版本而异，请以当地官方信息为准。</p>`;document.getElementById("modal").classList.add("open");document.body.style.overflow="hidden"}
+document.getElementById("modelFilters").addEventListener("click",e=>{const b=e.target.closest("[data-type]");if(!b)return;currentModelType=b.dataset.type;document.querySelectorAll("#modelFilters .filter").forEach(x=>x.classList.toggle("active",x===b));renderModelCards()});
+document.getElementById("modelSearch").addEventListener("input",renderModelCards);document.getElementById("modelSort").addEventListener("change",renderModelCards);
+document.getElementById("modelGrid").addEventListener("click",e=>{const c=e.target.closest("[data-model-id]");if(c)openModel(c.dataset.modelId)});
+document.getElementById("modelGrid").addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.matches("[data-model-id]")){e.preventDefault();e.target.click()}});
+
+renderBrands();renderCompare();renderModelCards();
+</script>
+</body>
+</html>
